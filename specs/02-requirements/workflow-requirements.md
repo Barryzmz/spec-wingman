@@ -1,0 +1,5 @@
+# Workflow Requirements
+
+| ID | 流程需求 | 觸發條件 | 主要步驟 | 結果 | 來源 | 狀態 |
+| --- | --- | --- | --- | --- | --- | --- |
+| WR-001 | TBD | TBD | TBD | TBD | TBD | Draft |

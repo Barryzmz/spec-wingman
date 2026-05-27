@@ -1,0 +1,5 @@
+# Data Requirements
+
+| ID | 資料需求 | 資料欄位或實體 | 格式或限制 | 來源 | 狀態 |
+| --- | --- | --- | --- | --- | --- |
+| DR-001 | TBD | TBD | TBD | TBD | Draft |

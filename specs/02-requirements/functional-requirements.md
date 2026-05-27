@@ -1,0 +1,7 @@
+# Functional Requirements
+
+正式功能需求只能記錄已確認內容。
+
+| ID | 功能需求 | 使用者角色 | 優先級 | 來源 | 驗收方式 | 狀態 |
+| --- | --- | --- | --- | --- | --- | --- |
+| FR-001 | TBD | TBD | TBD | TBD | TBD | Draft |
