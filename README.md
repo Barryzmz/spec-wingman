@@ -6,27 +6,51 @@ ReqForge 是一個需求規格工作流專案，用來協助 PM、開發者與 A
 
 ## 工作流
 
-1. `specs/00-inputs/`
+1. 01 read inputs
+   - Prompt: `prompts/01-read-inputs.prompt.md`
+   - Input: `CONSTITUTION.md`, `specs/00-inputs/`
+   - Output: `specs/01-discovery/`
    - 放置原始輸入摘要或使用者描述。
    - 不在此階段判斷需求正確性。
 
-2. `specs/01-discovery/`
-   - 摘要來源、擷取事實、整理問題、列出假設與名詞定義。
-   - 不確定內容必須進入 `open-questions.md`。
-   - 推測性內容必須進入 `assumptions.md`。
+2. 02 extract requirements
+   - Prompt: `prompts/02-extract-requirements.prompt.md`
+   - Input: `CONSTITUTION.md`, `specs/01-discovery/`
+   - Output: `specs/02-requirements/`
+   - 從已確認事實萃取正式需求。
+   - 不確定內容必須回寫 `open-questions.md`。
+   - 推測性內容必須回寫 `assumptions.md`。
 
-3. `specs/02-requirements/`
+3. 03 clarify requirements
+   - Prompt: `prompts/03-clarify-requirements.prompt.md`
+   - Input: `CONSTITUTION.md`, `specs/01-discovery/`, `specs/02-requirements/`
+   - Output: `specs/01-discovery/open-questions.md`, `specs/01-discovery/assumptions.md`
+   - 釐清需求中的矛盾、缺漏、未確認內容與假設。
+
+4. 04 analyze requirements
+   - Prompt: `prompts/04-analyze-requirements.prompt.md`
+   - Input: `CONSTITUTION.md`, `specs/01-discovery/`, `specs/02-requirements/`
+   - Output: `specs/03-analysis/`
+   - 根據已確認需求建立 use cases、user stories、acceptance criteria、domain model、state transitions 與 edge cases。
+
+5. 05 generate spec
+   - Prompt: `prompts/05-generate-spec.prompt.md`
+   - Input: `CONSTITUTION.md`, `specs/01-discovery/`, `specs/02-requirements/`, `specs/03-analysis/`, `templates/requirement-spec-template.md`
+   - Output: `specs/04-design-ready/requirement-spec.md`
    - 只記錄已確認需求。
    - 使用 `FR`、`BR`、`DR`、`WR`、`PR`、`NFR` 等編號。
 
-4. `specs/03-analysis/`
-   - 根據已確認需求建立 use cases、user stories、acceptance criteria、domain model、state transitions 與 edge cases。
-
-5. `specs/04-design-ready/`
+6. 06 generate design-ready documents
+   - Prompt: `prompts/06-generate-design-ready.prompt.md`
+   - Input: `CONSTITUTION.md`, `specs/04-design-ready/requirement-spec.md`, `templates/`
+   - Output: `specs/04-design-ready/`
    - 產出可交付給設計、前端、後端、測試與專案管理使用的文件。
    - 設計文件只能根據已確認需求產生。
 
-6. `specs/05-versions/`
+7. 07 update versions
+   - Prompt: `prompts/07-update-versions.prompt.md`
+   - Input: `CONSTITUTION.md`, `specs/01-discovery/`, `specs/02-requirements/`, `specs/03-analysis/`, `specs/04-design-ready/`
+   - Output: `specs/05-versions/changelog.md`, `specs/05-versions/decision-log.md`
    - 維護 changelog 與 decision log。
 
 ## 需求編號
