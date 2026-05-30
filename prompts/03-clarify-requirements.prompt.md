@@ -39,7 +39,8 @@
 1. 根據使用者回答更新 `specs/01-discovery/open-questions.md` 的狀態、答案與影響範圍。
 2. 根據使用者回答更新或移除 `specs/01-discovery/assumptions.md` 中已被確認或否定的假設。
 3. 只有在使用者回答已明確確認需求時，才更新 `specs/02-requirements/`。
-4. 將已確認的需求決策、原因、影響與來源記錄到 `specs/05-versions/decision-log.md`。
+4. 當使用者回答被寫回需求文件時，必須同步更新 `specs/05-versions/decision-log.md`。
+5. 將已確認的需求決策、原因、來源與關聯需求記錄到 `specs/05-versions/decision-log.md`。
 
 ## Rules
 
@@ -49,6 +50,7 @@
 - 對每個問題標記影響範圍。
 - 若問題會阻擋後續分析、規格草稿或設計文件，明確標記為 blocking。
 - 不得把 open question 或 assumption 改寫成已確認需求，除非使用者回答已明確確認。
+- 需求決策不可只存在對話紀錄，必須進入 `specs/05-versions/decision-log.md`。
 - 不得新增產品功能需求。
 - 不得產生 `specs/04-design-ready/requirement-spec.md`。
 - 不得產生 API、database、frontend、test cases 或 development tasks。
