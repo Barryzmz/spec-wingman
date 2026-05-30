@@ -62,6 +62,9 @@ ReqForge 是一個需求規格工作流專案，用來協助 PM、開發者與 A
    - Input: `CONSTITUTION.md`, `specs/01-discovery/`, `specs/02-requirements/`, `specs/03-analysis/`, `specs/04-design-ready/`
    - Output: `specs/05-versions/changelog.md`, `specs/05-versions/decision-log.md`
    - 維護 changelog 與 decision log。
+   - 使用時機：使用者回答釐清問題後、requirements 被更新後、requirement-spec 產出後、design-ready 文件產出後，或任何需求決策有變更時。
+   - 需求決策不可只存在對話紀錄，必須記錄到 `specs/05-versions/decision-log.md`。
+   - 文件新增、修改、移除或重新產出時，必須記錄到 `specs/05-versions/changelog.md`。
 
 ## 需求編號
 

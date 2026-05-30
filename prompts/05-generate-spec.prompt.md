@@ -23,6 +23,8 @@
 
 - `specs/04-design-ready/requirement-spec.md`
 
+正式規格書產出或更新後，應提醒執行 `prompts/07-update-versions.prompt.md`，將變更摘要記錄到 `specs/05-versions/changelog.md`。若規格產出涉及需求取捨、範圍界定或狀態變更，該決策不可只存在對話紀錄，必須進入 `specs/05-versions/decision-log.md`。
+
 ## Tasks
 
 1. 整合 `specs/02-requirements/` 中的正式需求。
@@ -38,6 +40,8 @@
 - 不得引用 pending assumptions。
 - 若缺少設計或驗收所需資訊，請回寫 open question。
 - 不得跳過 `specs/03-analysis/`。
+- 產出或更新正式規格書後，應提醒更新 `specs/05-versions/changelog.md`。
+- 需求決策不可只存在對話紀錄，必須進入 `specs/05-versions/decision-log.md`。
 - 不得新增產品功能需求。
 - 不得修改 `specs/00-inputs/` 的原始輸入內容。
 - 所有輸出使用 Markdown。
