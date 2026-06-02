@@ -4,6 +4,8 @@ ReqForge 是一個需求規格工作流專案，用來協助 PM、開發者與 A
 
 本專案的核心目標不是快速產生文件，而是建立一個可追溯、可審核、可逐步確認的需求整理流程。所有正式需求必須能回到來源、確認狀態與決策紀錄。
 
+支援 **Claude Code**（slash commands）、**GitHub Copilot**、**OpenAI Codex CLI** 與其他 LLM，核心 workflow 完全共用。詳見 [GUIDE.md](GUIDE.md)。
+
 ## Workflow Steps 與 Artifact Layers
 
 `prompts/` 代表 workflow steps，也就是 AI 執行需求整理工作的步驟。prompt 編號用來表示建議執行順序，不代表一定要一對一對應 `specs/` 資料夾編號。

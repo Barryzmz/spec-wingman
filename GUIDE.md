@@ -56,6 +56,42 @@ reqforge/
 
 ---
 
+## 跨 LLM 使用
+
+ReqForge 支援三種 AI 工具，核心 workflow（`prompts/`、`specs/`、`CONSTITUTION.md`）完全共用。
+
+### Skills 架構（參考 spec-kit）
+
+每個工作流步驟都有對應的 **Skill 檔案**，放在 `.github/skills/<skill-name>/SKILL.md`。
+這是跨工具的通用格式 — Copilot、Codex CLI 都能直接讀取並執行。
+
+```
+.github/skills/
+├── rf-discover/SKILL.md
+├── rf-extract/SKILL.md
+├── rf-clarify/SKILL.md
+├── rf-analyze/SKILL.md
+├── rf-spec/SKILL.md
+├── rf-design/SKILL.md
+├── rf-log/SKILL.md
+├── rf-status/SKILL.md
+├── rf-next/SKILL.md
+└── rf-help/SKILL.md
+```
+
+### 各工具呼叫方式
+
+| 工具 | 呼叫格式 | 設定檔 |
+|------|---------|--------|
+| **Claude Code** | `/rf-discover`、`/rf-next` 等 slash commands | `.claude/commands/` |
+| **GitHub Copilot** | `rf-discover`、`run rf-discover`、`run step 1` | `.github/copilot-instructions.md` + `.github/skills/` |
+| **OpenAI Codex CLI** | `rf-discover`、`run step 1` | `AGENTS.md` + `.github/skills/` |
+| **其他 LLM** | 直接貼上對應的 `prompts/*.prompt.md` 內容 | — |
+
+**注意：** `/rf-*` 格式的 slash commands 僅 Claude Code 支援。其他工具使用 skill 名稱（不帶斜線）觸發相同流程，結果與輸出格式完全一致。
+
+---
+
 ## 完整工作流程
 
 共 7 個步驟，每個步驟有對應的提示詞檔案（`prompts/0X-*.prompt.md`）與 slash command。
