@@ -38,7 +38,7 @@
 `specs/05-versions/decision-log.md` 應至少包含：
 
 - Decision ID
-- Date
+- Datetime（格式：`YYYY-MM-DD HH:MM:SS +08:00`）
 - Decision
 - Reason
 - Source
@@ -46,11 +46,16 @@
 
 `specs/05-versions/changelog.md` 應至少包含：
 
-- Version / Date
+- Version / Datetime（格式：`YYYY-MM-DD HH:MM:SS +08:00`）
 - Changed Files
 - Summary
 - Reason
 - Related Prompt Step
+
+## Timestamp Format
+
+- 所有 Date 欄位必須記錄到秒，格式為 `YYYY-MM-DD HH:MM:SS +08:00`（例如 `2026-06-02 14:35:07 +08:00`）。
+- 時間以寫入當下的本地時間為準，時區固定為 `+08:00`，不得只填日期或填 TBD。
 
 ## Rules
 
