@@ -1,4 +1,4 @@
-# rf-log — 步驟 7：更新版本紀錄
+# rf.log — 步驟 7：更新版本紀錄
 
 對應 `prompts/07-update-versions.prompt.md`。
 

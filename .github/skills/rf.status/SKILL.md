@@ -2,7 +2,7 @@
 description: 掃描 specs/ 各資料夾，顯示 ReqForge 工作流每個步驟的完成狀態
 ---
 
-# rf-status — ReqForge 工作流進度檢查
+# rf.status — ReqForge 工作流進度檢查
 
 掃描 `specs/` 各資料夾的實際內容，判斷每個步驟的完成狀態，輸出一張進度表。
 
