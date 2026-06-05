@@ -59,6 +59,9 @@
 
 ## Rules
 
+- Guard clause: before editing `changelog.md` or `decision-log.md`, compare the completed prompt steps already recorded in the current files with the completed artifacts in `specs/`. Only add or update entries for completed steps that are missing, stale, or materially changed. Do not rewrite unrelated historical entries.
+- Each changelog entry must include a concrete `Related Prompt Step` value, such as `Step 4 - swm.analyze`, so `swm_next` can verify which completed step has been logged.
+
 - 只記錄已發生且可追溯的文件變更與已確認決策。
 - 不得把 open question、assumption 或草稿內容記錄為已確認決策。
 - 若缺少決策依據，新增或引用 open question，不得自行補齊。

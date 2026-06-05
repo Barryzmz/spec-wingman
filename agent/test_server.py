@@ -31,4 +31,5 @@ async def main():
             print(result.content[0].text[:300] + "...")
 
 
-asyncio.run(main())
+if __name__ == "__main__":
+    asyncio.run(main())

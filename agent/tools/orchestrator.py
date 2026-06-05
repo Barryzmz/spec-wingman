@@ -27,15 +27,36 @@ _REQUIRED_STEP6 = [
     "frontend-pages.md", "test-cases.md", "development-tasks.md",
 ]
 
+_STEP_LOG_PATTERNS = {
+    1: ["step 1", "swm.discover", "01-read-inputs"],
+    2: ["step 2", "swm.extract", "02-extract-requirements"],
+    3: ["step 3", "swm.clarify", "03-clarify-requirements"],
+    4: ["step 4", "swm.analyze", "04-analyze-requirements"],
+    5: ["step 5", "swm.spec", "05-generate-spec"],
+    6: ["step 6", "swm.design", "06-generate-design-ready"],
+}
+
 
 def _dir_complete(dir_path: Path, required: list[str]) -> bool:
     return dir_path.exists() and all((dir_path / f).exists() for f in required)
 
 
-def _log_is_current(root: Path) -> bool:
-    """Return True if changelog is newer than all specs files (excluding 05-versions)."""
+def _changelog_mentions_step(changelog: Path, step: int) -> bool:
+    try:
+        text = changelog.read_text(encoding="utf-8").lower()
+    except OSError:
+        return False
+
+    return any(pattern in text for pattern in _STEP_LOG_PATTERNS[step])
+
+
+def _log_is_current(root: Path, completed_step: int) -> bool:
+    """Return True if version files are fresh and changelog covers the completed step."""
     changelog = root / "specs" / "05-versions" / "changelog.md"
-    if not changelog.exists():
+    decision_log = root / "specs" / "05-versions" / "decision-log.md"
+    if not changelog.exists() or not decision_log.exists():
+        return False
+    if not _changelog_mentions_step(changelog, completed_step):
         return False
     log_mtime = changelog.stat().st_mtime
     for step in ["01-discovery", "02-requirements", "03-analysis", "04-design-ready"]:
@@ -85,13 +106,13 @@ def determine_state(project_path: str) -> str:
     # Step 1: Discovery
     if not _dir_complete(specs / "01-discovery", _REQUIRED_STEP1):
         return "STEP_1_READY"
-    if not _log_is_current(root):
+    if not _log_is_current(root, 1):
         return "LOG_READY"
 
     # Step 2: Requirements
     if not _dir_complete(specs / "02-requirements", _REQUIRED_STEP2):
         return "STEP_2_READY"
-    if not _log_is_current(root):
+    if not _log_is_current(root, 2):
         return "LOG_READY"
 
     # Step 3: Clarify — only enter if Step 4 analysis is not yet done
@@ -100,29 +121,29 @@ def determine_state(project_path: str) -> str:
         if s3 == "PHASE1_READY":
             return "STEP_3_PHASE1_READY"
         if s3 == "WAITING":
-            if not _log_is_current(root):
+            if not _log_is_current(root, 3):
                 return "LOG_READY"
             return "STEP_3_WAITING"
         if s3 == "PHASE2_READY":
             return "STEP_3_PHASE2_READY"
         # s3 == "DONE": fall through to Step 4
-        if not _log_is_current(root):
+        if not _log_is_current(root, 3):
             return "LOG_READY"
         return "STEP_4_READY"
 
-    if not _log_is_current(root):
+    if not _log_is_current(root, 4):
         return "LOG_READY"
 
     # Step 5: Spec
     if not (specs / "04-design-ready" / "requirement-spec.md").exists():
         return "STEP_5_READY"
-    if not _log_is_current(root):
+    if not _log_is_current(root, 5):
         return "LOG_READY"
 
     # Step 6: Design
     if not _dir_complete(specs / "04-design-ready", _REQUIRED_STEP6):
         return "STEP_6_READY"
-    if not _log_is_current(root):
+    if not _log_is_current(root, 6):
         return "LOG_READY"
 
     return "COMPLETE"

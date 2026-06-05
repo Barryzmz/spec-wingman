@@ -54,9 +54,13 @@ def _write_step(tmp: Path, subdir: str, files: list[str], mtime: float = _NEW) -
         _touch(tmp / "specs" / subdir / f, mtime=mtime)
 
 
-def _write_log(tmp: Path, mtime: float = _NEW) -> None:
-    _touch(tmp / "specs" / "05-versions" / "changelog.md", mtime=mtime)
-    _touch(tmp / "specs" / "05-versions" / "decision-log.md", mtime=mtime)
+def _write_log(tmp: Path, mtime: float = _NEW, steps: tuple[int, ...] = (1, 2, 3, 4, 5, 6)) -> None:
+    changelog = "\n".join(
+        f"| 0.{step}.0 / 2026-06-06 00:00:00 +08:00 | specs | Logged step {step} | completed | Step {step} - swm.step |"
+        for step in steps
+    )
+    _touch(tmp / "specs" / "05-versions" / "changelog.md", content=changelog, mtime=mtime)
+    _touch(tmp / "specs" / "05-versions" / "decision-log.md", content="No decisions", mtime=mtime)
 
 
 class TestDetermineState(unittest.TestCase):
@@ -187,6 +191,15 @@ class TestDetermineState(unittest.TestCase):
         _touch(self.tmp / "specs" / "01-discovery" / "answer-draft.md", content="", mtime=_OLD)
         _write_step(self.tmp, "03-analysis", _STEP4_FILES, mtime=_NEW)
         _write_log(self.tmp, mtime=_OLD)
+        self.assertEqual(determine_state(self.p()), "LOG_READY")
+
+    def test_log_ready_after_step4_when_changelog_missing_step4(self):
+        _touch(self.tmp / "specs" / "00-inputs" / "user-description.md", mtime=_OLD)
+        _write_step(self.tmp, "01-discovery", _STEP1_FILES, mtime=_OLD)
+        _write_step(self.tmp, "02-requirements", _STEP2_FILES, mtime=_OLD)
+        _touch(self.tmp / "specs" / "01-discovery" / "answer-draft.md", content="", mtime=_OLD)
+        _write_step(self.tmp, "03-analysis", _STEP4_FILES, mtime=_OLD)
+        _write_log(self.tmp, mtime=_NEW, steps=(1, 2, 3))
         self.assertEqual(determine_state(self.p()), "LOG_READY")
 
     # ── STEP_5_READY ──────────────────────────────────────────────────────────
