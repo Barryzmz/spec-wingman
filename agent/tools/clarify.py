@@ -5,7 +5,7 @@ from tools.utils import _read_file, _read_dir, validate_project_path
 
 
 def swm_clarify_context_tool(project_path: str) -> str:
-    root = Path(project_path)
+    root = validate_project_path(project_path)
     constitution = _read_file(root / "CONSTITUTION.md")
     prompt = _read_file(root / "prompts" / "03-clarify-requirements.prompt.md")
     discovery = _read_dir(root / "specs" / "01-discovery")

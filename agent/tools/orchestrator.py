@@ -1,5 +1,6 @@
 from pathlib import Path
 
+from tools.utils import validate_project_path
 from tools.discover import swm_discover_context_tool
 from tools.extract import swm_extract_context_tool
 from tools.clarify import swm_clarify_context_tool
@@ -73,7 +74,7 @@ def _step3_state(specs: Path) -> str:
 
 
 def determine_state(project_path: str) -> str:
-    root = Path(project_path)
+    root = validate_project_path(project_path)
     specs = root / "specs"
 
     # Step 0: inputs
@@ -128,6 +129,7 @@ def determine_state(project_path: str) -> str:
 
 
 def swm_next_tool(project_path: str) -> str:
+    root = validate_project_path(project_path)
     state = determine_state(project_path)
 
     if state == "NOT_STARTED":
@@ -151,7 +153,7 @@ def swm_next_tool(project_path: str) -> str:
         return "# Next: Step 3 Phase 1 (Clarify — Generate Questions)\n\n" + swm_clarify_context_tool(project_path)
 
     if state == "STEP_3_WAITING":
-        open_q = Path(project_path) / "specs" / "01-discovery" / "open-questions.md"
+        open_q = root / "specs" / "01-discovery" / "open-questions.md"
         questions = open_q.read_text(encoding="utf-8") if open_q.exists() else "(no questions found)"
         return (
             "# SpecWingman: Waiting for Clarification\n\n"

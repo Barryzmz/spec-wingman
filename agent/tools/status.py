@@ -1,6 +1,8 @@
 import re
 from pathlib import Path
 
+from tools.utils import validate_project_path
+
 STEPS = [
     ("00-inputs", "Step 0: Inputs"),
     ("01-discovery", "Step 1: Discovery"),
@@ -94,7 +96,8 @@ def _has_substantive_content(filepath: Path) -> bool:
 
 
 def swm_status_tool(project_path: str) -> str:
-    specs_dir = Path(project_path) / "specs"
+    root = validate_project_path(project_path)
+    specs_dir = root / "specs"
     lines = ["# SpecWingman Workflow Status", ""]
 
     for dir_name, label in STEPS:

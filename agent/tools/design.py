@@ -4,7 +4,7 @@ from tools.utils import _read_file, validate_project_path
 
 
 def swm_design_context_tool(project_path: str) -> str:
-    root = Path(project_path)
+    root = validate_project_path(project_path)
     constitution = _read_file(root / "CONSTITUTION.md")
     prompt = _read_file(root / "prompts" / "06-generate-design-ready.prompt.md")
     requirement_spec = _read_file(root / "specs" / "04-design-ready" / "requirement-spec.md")

@@ -4,7 +4,7 @@ from tools.utils import _read_file, _read_dir, validate_project_path
 
 
 def swm_spec_context_tool(project_path: str) -> str:
-    root = Path(project_path)
+    root = validate_project_path(project_path)
     constitution = _read_file(root / "CONSTITUTION.md")
     prompt = _read_file(root / "prompts" / "05-generate-spec.prompt.md")
     template = _read_file(root / "templates" / "requirement-spec-template.md")
