@@ -13,6 +13,9 @@ AGENT-ROADMAP.md
 # Env
 .env
 
+# Claude Code local settings (contains machine-specific paths)
+.claude/settings.local.json
+
 # OS
 .DS_Store
 Thumbs.db
