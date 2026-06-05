@@ -10,8 +10,15 @@ from tools.analyze import swm_analyze_context_tool, swm_write_analyze_tool
 from tools.spec import swm_spec_context_tool, swm_write_spec_tool
 from tools.design import swm_design_context_tool, swm_write_design_tool
 from tools.log import swm_log_context_tool, swm_write_log_tool
+from tools.orchestrator import swm_next_tool
 
 mcp = FastMCP("SpecWingman")
+
+
+@mcp.tool()
+def swm_next(project_path: str) -> str:
+    """Orchestrator: inspect current workflow state and return the full context for the next pending step. The calling AI should process the returned context and call the corresponding swm_write_* tool, then call swm_next again to continue. Pauses at Step 3 when user answers are needed."""
+    return swm_next_tool(project_path)
 
 
 @mcp.tool()

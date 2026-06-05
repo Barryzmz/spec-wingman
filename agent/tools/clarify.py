@@ -12,6 +12,23 @@ def swm_clarify_context_tool(project_path: str) -> str:
     requirements = _read_dir(root / "specs" / "02-requirements")
     decision_log = _read_file(root / "specs" / "05-versions" / "decision-log.md")
 
+    answer_draft_path = root / "specs" / "01-discovery" / "answer-draft.md"
+    answer_draft_content = answer_draft_path.read_text(encoding="utf-8").strip() if answer_draft_path.exists() else ""
+    is_phase2 = bool(answer_draft_content)
+
+    answer_draft_section = (
+        f"\n## User Answers (specs/01-discovery/answer-draft.md)\n\n{answer_draft_content}\n"
+        if is_phase2 else ""
+    )
+    phase_instruction = (
+        "**You are in Phase 2.** User answers are provided above. "
+        "Perform the full backfill and call `swm_write_clarify` with all fields. "
+        "Pass answer_draft=\"\" to clear the draft file after processing."
+        if is_phase2 else
+        "**You are in Phase 1.** Generate clarification questions and call `swm_write_clarify` "
+        "with only open_questions. Do not modify any other files yet."
+    )
+
     return f"""# SpecWingman Step 3: Clarify Requirements Context
 
 ## Task Instructions
@@ -28,18 +45,18 @@ def swm_clarify_context_tool(project_path: str) -> str:
 
 ## Decision Log (specs/05-versions/decision-log.md)
 {decision_log}
+{answer_draft_section}
+## Phase Instructions
 
-## Next Step
-**Phase 1** — Generate clarification questions and call `swm_write_clarify` with:
-- open_questions: updated content for specs/01-discovery/open-questions.md
+{phase_instruction}
 
-**Phase 2** — After the user answers, call `swm_write_clarify` again with the full backfill:
-- open_questions: updated content (mark answered questions)
-- answer_draft: raw answers to archive (pass empty string "" to clear the file)
-- assumptions: updated content for specs/01-discovery/assumptions.md
-- decision_log: full updated content for specs/05-versions/decision-log.md
+### swm_write_clarify parameters
+- open_questions: updated content for specs/01-discovery/open-questions.md (required)
+- answer_draft: pass "" to clear after Phase 2 processing; omit in Phase 1 (optional)
+- assumptions: updated content for specs/01-discovery/assumptions.md (Phase 2 only)
+- decision_log: full updated content for specs/05-versions/decision-log.md (Phase 2 only)
 
-To backfill requirements files after Phase 2, call `swm_write_extract` with the updated content.
+To backfill requirements files after Phase 2, call `swm_write_extract` with updated content.
 """
 
 
