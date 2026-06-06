@@ -1,3 +1,14 @@
+<p align="center">
+  <img src="assets/banner.svg" alt="SpecWingman Banner" width="100%" />
+</p>
+
+<p align="center">
+  <img src="https://img.shields.io/badge/version-0.1.0-008fd3?style=flat-square" alt="version 0.1.0" />
+  <img src="https://img.shields.io/badge/specs-traceable-6f42c1?style=flat-square" alt="traceable specs" />
+  <img src="https://img.shields.io/badge/MCP-supported-2ea44f?style=flat-square" alt="MCP supported" />
+  <img src="https://img.shields.io/badge/no-guesswork-f97316?style=flat-square" alt="no guesswork" />
+</p>
+
 # SpecWingman
 
 SpecWingman 是一個需求規格工作流專案，用來協助 PM、開發者與 AI 協作者，將使用者口頭需求、會議紀錄、PPT、Excel、Word、PDF 等資料，整理、釐清並產出正式需求規格文件。

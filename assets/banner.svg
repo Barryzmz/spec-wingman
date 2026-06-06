@@ -1,0 +1,91 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1916" height="821" viewBox="0 0 1916 821" role="img" aria-labelledby="title desc">
+  <title id="title">SpecWingman modern tech banner</title>
+  <desc id="desc">A minimalist dark navy technology banner with a winged star logo, SpecWingman wordmark, and the tagline Structured Requirements, Traceable Decisions, AI Without Guesswork.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#061526"/>
+      <stop offset="0.52" stop-color="#071a2e"/>
+      <stop offset="1" stop-color="#02101f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0" stop-color="#19d3d2" stop-opacity="0.22"/>
+      <stop offset="0.45" stop-color="#117d95" stop-opacity="0.09"/>
+      <stop offset="1" stop-color="#000000" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="66" height="66" patternUnits="userSpaceOnUse">
+      <path d="M 66 0 L 0 0 0 66" fill="none" stroke="#ffffff" stroke-opacity="0.045" stroke-width="1"/>
+    </pattern>
+    <style>
+      .wordmark{font-family:Inter,Segoe UI,Arial,sans-serif;font-weight:800;letter-spacing:-5px;fill:#f5f8fb;}
+      .tagline{font-family:Inter,Segoe UI,Arial,sans-serif;font-weight:400;letter-spacing:1.7px;fill:#d6dde5;}
+      .accent{fill:#16d3d2;}
+      .line{stroke:#17cfd0;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;fill:none;}
+      .thin{stroke:#18cdd0;stroke-width:2;fill:none;opacity:.38;}
+    </style>
+  </defs>
+
+  <rect width="1916" height="821" fill="url(#bg)"/>
+  <rect width="1916" height="821" fill="url(#grid)"/>
+  <ellipse cx="1808" cy="399" rx="438" ry="314" fill="url(#glow)" opacity=".8"/>
+
+  <!-- Right-side minimal tech rings -->
+  <g opacity="0.46">
+    <circle cx="1810" cy="391" r="226" class="thin"/>
+    <circle cx="1810" cy="391" r="146" class="thin" opacity=".55"/>
+    <circle cx="1810" cy="391" r="320" class="thin" opacity=".35"/>
+    <circle cx="1664" cy="391" r="5" fill="#15cccf" opacity=".8"/>
+  </g>
+
+  <!-- dotted clusters -->
+  <g fill="#14cbd0" opacity=".52">
+    <circle cx="105" cy="610" r="3"/><circle cx="135" cy="610" r="3"/><circle cx="165" cy="610" r="3"/><circle cx="195" cy="610" r="3"/><circle cx="225" cy="610" r="3"/>
+    <circle cx="105" cy="638" r="3"/><circle cx="135" cy="638" r="3"/><circle cx="165" cy="638" r="3"/><circle cx="195" cy="638" r="3"/><circle cx="225" cy="638" r="3"/>
+    <circle cx="105" cy="666" r="3"/><circle cx="135" cy="666" r="3"/><circle cx="165" cy="666" r="3"/><circle cx="195" cy="666" r="3"/><circle cx="225" cy="666" r="3"/>
+
+    <circle cx="1714" cy="59" r="3"/><circle cx="1741" cy="59" r="3"/><circle cx="1767" cy="59" r="3"/><circle cx="1794" cy="59" r="3"/><circle cx="1821" cy="59" r="3"/><circle cx="1848" cy="59" r="3"/>
+    <circle cx="1714" cy="84" r="3"/><circle cx="1741" cy="84" r="3"/><circle cx="1767" cy="84" r="3"/><circle cx="1794" cy="84" r="3"/><circle cx="1821" cy="84" r="3"/>
+  </g>
+
+  <!-- Logo -->
+  <g transform="translate(304 379)" filter="url(#softGlow)">
+    <circle cx="0" cy="0" r="142" fill="none" stroke="#1cd7d5" stroke-width="5" opacity=".95"/>
+    <path d="M-73 -74 A105 105 0 0 1 73 -74" fill="none" stroke="#1ad4d3" stroke-width="3" stroke-dasharray="2 12" stroke-linecap="round"/>
+
+    <!-- wings left -->
+    <path class="line" d="M-28 -20 H-112 Q-104 2 -85 2 H-60"/>
+    <path class="line" d="M-38 1 H-95 Q-90 17 -76 17 H-54" opacity=".82"/>
+    <path class="line" d="M-48 23 H-82 Q-76 36 -60 36 H-43" opacity=".68"/>
+    <!-- wings right -->
+    <path class="line" d="M28 -20 H112 Q104 2 85 2 H60"/>
+    <path class="line" d="M38 1 H95 Q90 17 76 17 H54" opacity=".82"/>
+    <path class="line" d="M48 23 H82 Q76 36 60 36 H43" opacity=".68"/>
+
+    <!-- star / compass -->
+    <path d="M0 -52 L31 80 L0 53 L-31 80 Z" fill="#f7fbff"/>
+    <path d="M0 -52 L0 53 L31 80 Z" fill="#dceaf6" opacity=".88"/>
+    <path d="M0 -52 L-31 80 L0 53 Z" fill="#ffffff"/>
+    <path d="M0 -52 L14 18 L0 53 L-14 18 Z" fill="#13d6d5" opacity=".96"/>
+
+    <!-- sparkle -->
+    <path d="M0 -137 L10 -111 L36 -101 L10 -91 L0 -65 L-10 -91 L-36 -101 L-10 -111 Z" fill="#ffffff"/>
+  </g>
+
+  <!-- Wordmark and subtitle -->
+  <text x="518" y="402" class="wordmark" font-size="150">SpecWingman</text>
+
+  <!-- Subtitle: separated into three phrases with wider, balanced spacing around bullets -->
+  <g class="tagline" font-size="33">
+    <text x="519" y="490">Structured Requirements</text>
+    <circle cx="968" cy="477" r="4.5" class="accent"/>
+    <text x="1003" y="490">Traceable Decisions</text>
+    <circle cx="1364" cy="477" r="4.5" class="accent"/>
+    <text x="1399" y="490">AI Without Guesswork</text>
+  </g>
+</svg>
